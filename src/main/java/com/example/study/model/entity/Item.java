@@ -9,25 +9,26 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-//@Table(name="user") 이름같아서 안해줘도됨
-public class User {
+public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String account;
-
-    private String password;
-
     private String status;
 
-    private String email;
+    private String name;
 
-    private String phoneNumber;
+    private String title;
+
+    private String content;
+
+    private Integer price;
+
+    private String brandName;
 
     private LocalDateTime registeredAt;
 
@@ -40,9 +41,5 @@ public class User {
     private LocalDateTime updatedAt;
 
     private String updatedBy;
-
-    //1:N
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<OrderDetail>  orderDetailList;
 
 }

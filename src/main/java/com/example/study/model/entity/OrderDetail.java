@@ -3,35 +3,30 @@ package com.example.study.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-//@Table(name="user") 이름같아서 안해줘도됨
-public class User {
+//@ToString(exclude = {"user", "item"})
+public class OrderDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String account;
-
-    private String password;
+    private long id;
 
     private String status;
 
-    private String email;
+    private LocalDateTime arrivalDate;
 
-    private String phoneNumber;
+    private Integer quantity;
 
-    private LocalDateTime registeredAt;
-
-    private LocalDateTime unregisteredAt;
+    private BigDecimal totalPrice;
 
     private LocalDateTime createdAt;
 
@@ -40,9 +35,4 @@ public class User {
     private LocalDateTime updatedAt;
 
     private String updatedBy;
-
-    //1:N
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-    private List<OrderDetail>  orderDetailList;
-
 }
