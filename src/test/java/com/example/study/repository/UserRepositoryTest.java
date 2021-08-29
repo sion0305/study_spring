@@ -18,23 +18,36 @@ public class UserRepositoryTest extends StudyApplicationTests {
 
     @Test
     public void create(){
-        // String sql = insert into user(%s, %s, %d) value (account, email, age);
-        User user = new User();
-//        user.setId(); 자동으로 생성됨 db에서
-        user.setAccount("TestUser03");
-        user.setEmail("test3@gmail.com");
-        user.setPhoneNumber("010-1111-3333");
-        user.setCreatedAt(LocalDateTime.now());
-        user.setCreatedBy("TestUser3");
+        String account = "Test01";
+        String password = "Test01";
+        String status = "REGISTERED";
+        String email = "Test01@gmail.com";
+        String phoneNumber = "010-1111-2222";
+        LocalDateTime registeredAt = LocalDateTime.now();
+        LocalDateTime createdAt = LocalDateTime.now();
+        String createdBy = "AdminServer"; // LoginUserAuditorAware 적용으로 자동 createdBy 설정
 
-        User user1 = userRepository.save(user);
-        System.out.println("newUser: " + user1);
+
+        User user = new User();
+        user.setAccount(account);
+        user.setPassword(password);
+        user.setStatus(status);
+        user.setEmail(email);
+        user.setPhoneNumber(phoneNumber);
+        user.setRegisteredAt(registeredAt);
+        user.setCreatedAt(createdAt); // LoginUserAuditorAware 적용으로 자동 createdAt, createdBy 설정
+        user.setCreatedBy(createdBy);
+
+        User newUser = userRepository.save(user);
+        Assertions.assertNotNull(newUser);
+        Assertions.assertEquals("AdminServer", newUser.getCreatedBy());
     }
 
     @Test
     @Transactional
     public void read(){
-
+        User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-1111-2222");
+        Assertions.assertNotNull(user);
 
     }
 
