@@ -16,12 +16,12 @@ public class AdminUserRepositoryTest extends StudyApplicationTests {
     @Test
     public void create(){
         AdminUser adminUser = new AdminUser();
-        adminUser.setAccount("AdminUser01");
-        adminUser.setPassword("AdminUser01");
+        adminUser.setAccount("AdminUser02");
+        adminUser.setPassword("AdminUser02");
         adminUser.setStatus("REGISTERED");
         adminUser.setRole("PARTNER");
-        adminUser.setCreatedAt(LocalDateTime.now()); // LoginUserAuditorAware 적용으로 자동 createdAt, createdBy 설정
-        adminUser.setCreatedBy("AdminServer"); // LoginUserAuditorAware 적용으로 자동 createdAt, createdBy 설정
+//        adminUser.setCreatedAt(LocalDateTime.now()); // LoginUserAuditorAware 적용으로 자동 createdAt, createdBy 설정
+//        adminUser.setCreatedBy("AdminServer"); // LoginUserAuditorAware 적용으로 자동 createdAt, createdBy 설정
 
         AdminUser newAdminUser = adminUserRepository.save(adminUser);
         Assertions.assertNotNull(newAdminUser);

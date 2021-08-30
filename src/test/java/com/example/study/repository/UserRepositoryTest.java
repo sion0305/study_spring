@@ -38,6 +38,15 @@ public class UserRepositoryTest extends StudyApplicationTests {
         user.setCreatedAt(createdAt); // LoginUserAuditorAware 적용으로 자동 createdAt, createdBy 설정
         user.setCreatedBy(createdBy);
 
+        //생성자의 인자가 4개인 생성자를 만들지 않아도 이렇게 할수가 있음음
+        // new User(account, password, status, email)
+//       User u = User.builder()
+//                .account(account)
+//                .password(password)
+//                .status(status)
+//                .email(email)
+//                .build();
+
         User newUser = userRepository.save(user);
         Assertions.assertNotNull(newUser);
         Assertions.assertEquals("AdminServer", newUser.getCreatedBy());
